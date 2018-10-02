@@ -1,7 +1,10 @@
 # ArtificialIntelligence
 This is a project by Ethan Malo, Zan Rost-Montieth, and Colter Fretwell for CSCI 446 Artificial Intellence at Montana State University.
+
 The objective of this project is to search input mazes with various search algorithms.
+
 The algorithms used in this project are breadth first search, depth first search, greedy best-first search, and A* search.
+
 This project was developed using java in the Intellij IDEA.
 
 Assignment:
