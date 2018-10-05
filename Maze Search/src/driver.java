@@ -1,6 +1,6 @@
 import java.io.*;
 
-/* This clas is the main driver for our assignment 1, using various search algorithms on static mazes
+/* This class is the main driver for our assignment 1, using various search algorithms on static mazes
  * of various dimension and attributes.
  */
 
@@ -43,4 +43,3 @@ public class driver {
 
     }
 }
-//Zan can push now from his surface
