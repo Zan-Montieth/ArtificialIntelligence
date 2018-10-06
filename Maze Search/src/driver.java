@@ -12,7 +12,7 @@ public class driver {
         String largeMaze = readMazeIn("large maze.txt");    // read in from static files
         String openMaze = readMazeIn("open maze.txt");
 
-        //System.out.print(mediumMaze);
+        System.out.print(mediumMaze);
         //System.out.print(largeMaze);
         //System.out.print(openMaze);
 
@@ -28,7 +28,7 @@ public class driver {
         try {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
-
+            int mazeWidth = line.length();
             while (line != null) {
                 sb.append(line);
                 sb.append(System.lineSeparator());

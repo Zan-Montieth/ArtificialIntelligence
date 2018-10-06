@@ -6,7 +6,11 @@ public class Maze {
     char[][] currentState;
 
     public Maze(String textMaze) {
-        //baseMaze = textMaze;
+
+        for(int x = 0; x < textMaze.length(); x++){
+            baseMaze[x][0] =
+            //baseMaze = textMaze;
+        }
         //currentState = textMaze;
     }
 
