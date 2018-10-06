@@ -9,6 +9,7 @@ public class Maze {
 
     public Maze(String textMaze, int inMazeWidth) {
         mazeWidth = inMazeWidth - 1;
+        baseMaze = new char[mazeWidth][mazeWidth];
         char[] input =  textMaze.toCharArray();
 
         int y = 0;

@@ -14,7 +14,7 @@ public class driver {
 
         mediumMaze.printMaze();
 
-        System.out.print(mediumMaze);
+        //System.out.print(mediumMaze);
         //System.out.print(largeMaze);
         //System.out.print(openMaze);
 
