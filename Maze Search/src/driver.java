@@ -12,6 +12,8 @@ public class driver {
         Maze largeMaze = readMazeIn("large maze.txt");    // read in from static files
         Maze openMaze = readMazeIn("open maze.txt");
 
+        mediumMaze.printMaze();
+
         System.out.print(mediumMaze);
         //System.out.print(largeMaze);
         //System.out.print(openMaze);

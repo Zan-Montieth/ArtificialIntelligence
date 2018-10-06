@@ -5,14 +5,30 @@ public class Maze {
     char[][] baseMaze;
     char[][] currentState;
     private int mazeWidth;
+    private int mazeLength;
 
     public Maze(String textMaze, int inMazeWidth) {
-        mazeWidth = inMazeWidth;
-        for(int x = 0; x < inMazeWidth - 1; x++){
-            //baseMaze[x][0] =
-            //baseMaze = textMaze;
+        mazeWidth = inMazeWidth - 1;
+        char[] input =  textMaze.toCharArray();
+
+        int y = 0;
+        while(((y + 1)* (mazeWidth)) < textMaze.length() - 1){
+
+            for (int x = 0; x < mazeWidth; x++) {
+                baseMaze[y][x] = input[(y * x) + x + 1];
+            }
+            y++;
         }
-        //currentState = textMaze;
+        mazeLength = y;
+    }
+
+    public void printMaze(){
+        for(int y = 0; y < mazeLength; y++){
+            for (int x = 0; x < mazeWidth; x++) {
+                System.out.print(baseMaze[x][y] + " ");
+            }
+            System.out.println();
+        }
     }
 /*
     private Node findStart(){
