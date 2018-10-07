@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Maze {
 
     Node start = findStart();
@@ -5,45 +6,35 @@ public class Maze {
     char[][] baseMaze;
     char[][] currentState;
     private int mazeWidth;
-    private int mazeLength;
+    private int mazeHeight;
 
-    public Maze(String textMaze, int inMazeWidth) {
-        mazeWidth = inMazeWidth - 1;
-        baseMaze = new char[mazeWidth][mazeWidth];
-        char[] input =  textMaze.toCharArray();
-
-        int y = 0;
-        while(((y + 1)* (mazeWidth)) < textMaze.length() - 1){
-
-            for (int x = 0; x < mazeWidth; x++) {
-                baseMaze[y][x] = input[(y * x) + x + 1];
-            }
-            y++;
-        }
-        mazeLength = y;
+    public Maze(char[][] textMaze) {
+        baseMaze=textMaze;
+        currentState = textMaze;
+        mazeWidth=textMaze[0].length;
+        mazeHeight=textMaze.length;
     }
 
     public void printMaze(){
-        for(int y = 0; y < mazeLength; y++){
-            for (int x = 0; x < mazeWidth; x++) {
+        for(int x = 0; x < mazeHeight; x++){
+            for (int y = 0; y < mazeWidth; y++) {
                 System.out.print(baseMaze[x][y] + " ");
             }
-            System.out.println();
+            System.out.print("\n");
         }
     }
 
     private Node findStart(){
-        for (int i=0; i<baseMaze.length; i++)
-            for (int j = 0; j < baseMaze.length; j++)
+        for (int i=0; i<mazeHeight; i++)
+            for (int j = 0; j < mazeWidth; j++)
                 if (baseMaze[i][j] == 'P') start = new Node(i, j, null, null);
         return start;
     }
 
     private Node findEnd(){
-        for (int i=0; i<baseMaze.length; i++)
-            for (int j = 0; j < baseMaze.length; j++)
+        for (int i=0; i<mazeHeight; i++)
+            for (int j = 0; j < mazeWidth; j++)
                 if (baseMaze[i][j] == '*') end = new Node(i, j, null, null);
         return end;
     }
-
 }

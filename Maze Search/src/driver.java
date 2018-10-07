@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 /* This class is the main driver for our assignment 1, using various search algorithms on static mazes
  * of various dimension and attributes.
@@ -25,23 +26,23 @@ public class driver {
     *
      */
     private static Maze readMazeIn(String mazeName) throws IOException {
-        String maze;
+        ArrayList<String> maze = new ArrayList<>();
         int mazeWidth;
         BufferedReader br = new BufferedReader(new FileReader(mazeName));
         try {
-            StringBuilder sb = new StringBuilder();
             String line = br.readLine();
-            mazeWidth = line.length();
             while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
+                maze.add(line);
                 line = br.readLine();
             }
-            maze = sb.toString();
         } finally {
             br.close();
         }
-        Maze charMaze = new Maze(maze, mazeWidth);
+        char [][] newMaze = new char[maze.size()][maze.get(0).length()];
+        for(int i = 0; i < maze.size(); i++) {
+            newMaze[i]=maze.get(i).toCharArray();
+        }
+        Maze charMaze = new Maze(newMaze);
         return charMaze;
 
 
