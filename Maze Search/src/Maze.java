@@ -1,7 +1,7 @@
 public class Maze {
 
-    //Node start = findStart();
-    //Node end = findEnd();
+    Node start = findStart();
+    Node end = findEnd();
     char[][] baseMaze;
     char[][] currentState;
     private int mazeWidth;
@@ -31,7 +31,7 @@ public class Maze {
             System.out.println();
         }
     }
-/*
+
     private Node findStart(){
         for (int i=0; i<baseMaze.length; i++)
             for (int j = 0; j < baseMaze.length; j++)
@@ -45,5 +45,5 @@ public class Maze {
                 if (baseMaze[i][j] == '*') end = new Node(i, j, null, null);
         return end;
     }
-*/
+
 }
