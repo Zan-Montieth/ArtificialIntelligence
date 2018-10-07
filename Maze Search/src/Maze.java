@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 public class Maze {
 
-    Node start = findStart();
-    Node end = findEnd();
+    Node start;
+    Node end;
     char[][] baseMaze;
     char[][] currentState;
     private int mazeWidth;
@@ -14,6 +14,8 @@ public class Maze {
         currentState = textMaze;
         mazeWidth=textMaze[0].length;
         mazeHeight=textMaze.length;
+        start = findStart();
+        end = findEnd();
 
     }
 
@@ -27,16 +29,31 @@ public class Maze {
     }
 
     private Node findStart(){
-        for (int i=0; i<mazeHeight; i++)
+        for (int i=0; i < mazeHeight; i++)
             for (int j = 0; j < mazeWidth; j++)
-                if (baseMaze[i][j] == 'P') start = new Node(i, j, null, null);
+                if (baseMaze[i][j] == 'P') {
+                    start = new Node(i, j, null, null);
+                    //System.out.printf("start at (%d,%d)\n", i, j);
+                }
         return start;
     }
 
     private Node findEnd(){
-        for (int i=0; i<mazeHeight; i++)
+        for (int i = 0; i < mazeHeight; i++)
             for (int j = 0; j < mazeWidth; j++)
-                if (baseMaze[i][j] == '*') end = new Node(i, j, null, null);
+                if (baseMaze[i][j] == '*') {
+                    end = new Node(i, j, null, null);
+                    //System.out.printf("end at (%d,%d)\n", i, j);
+                }
         return end;
     }
+
+    public void printStart() {
+        System.out.printf("Start at (%d,%d)\n", start.getXCoord(), start.getYCoord());
+    }
+
+    public void printEnd() {
+        System.out.printf("End at (%d,%d)\n", end.getXCoord(), end.getYCoord());
+    }
+
 }
