@@ -27,7 +27,6 @@ public class driver {
      */
     private static Maze readMazeIn(String mazeName) throws IOException {
         ArrayList<String> maze = new ArrayList<>();
-        int mazeWidth;
         BufferedReader br = new BufferedReader(new FileReader(mazeName));
         try {
             String line = br.readLine();

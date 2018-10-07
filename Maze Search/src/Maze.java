@@ -8,11 +8,13 @@ public class Maze {
     private int mazeWidth;
     private int mazeHeight;
 
+
     public Maze(char[][] textMaze) {
         baseMaze=textMaze;
         currentState = textMaze;
         mazeWidth=textMaze[0].length;
         mazeHeight=textMaze.length;
+
     }
 
     public void printMaze(){
