@@ -124,4 +124,7 @@ public class Maze {
             for (int j = 0; j < mazeWidth; j++) assignTo[i][j] = assignFrom[i][j];
     }
 
+    public char getSpot(int inX, int inY){
+        return currentState[inX][inY];
+    }
 }
