@@ -9,12 +9,14 @@ public class driver {
     public static void main(String[] args) throws IOException {
 
         Maze mediumMaze = readMazeIn("medium maze.txt");  // names can be changed as needed, but will be
-        Maze largeMaze = readMazeIn("large maze.txt");    // read in from static files
-        Maze openMaze = readMazeIn("open maze.txt");
+        //Maze largeMaze = readMazeIn("large maze.txt");    // read in from static files
+        //Maze openMaze = readMazeIn("open maze.txt");
 
         mediumMaze.printMaze();
         //mediumMaze.printStart();
         //mediumMaze.printEnd();
+
+
 
     }
 

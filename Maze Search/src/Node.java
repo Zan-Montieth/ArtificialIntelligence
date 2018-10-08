@@ -7,7 +7,8 @@ public class Node {
     private int endDistance = 0;
     private int parentDist = 0;  // dist to parent node
 
-    public Node (int inX, int inY, Node lastNode, Node finalNode) {
+
+    public Node (int inX, int inY) {
         xCoord = inX;
         yCoord = inY;
 
