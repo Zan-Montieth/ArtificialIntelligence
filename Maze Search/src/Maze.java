@@ -136,4 +136,7 @@ public class Maze {
         return end;
     }
 
+    public void reset(){
+        assign(currentState,baseMaze);
+    }
 }

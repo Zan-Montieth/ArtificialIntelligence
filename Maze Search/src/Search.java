@@ -9,6 +9,7 @@ public class Search {
     public void Search(Maze currentMaze) {
         maze = currentMaze;
         runBFS(maze);
+        maze.reset();
         runDPS(maze);
         runGBFS(maze);
         runAS(maze);
