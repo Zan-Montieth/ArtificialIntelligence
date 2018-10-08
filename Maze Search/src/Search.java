@@ -23,26 +23,37 @@ public class Search {
     }
 
     private void runBFS(Maze maze) {
-        //int x = maze.getStart().getX();
-        //int y = maze.getStart().getY();
-        int y = 6;
-        int x = 1;
+        int x = maze.getStart().getX();
+        int y = maze.getStart().getY();
+        //int y = 6;
+        //int x = 1;
         queue.add(maze.getStart());
         //System.out.println(queue.contains(maze.getStart()));
         while (!queue.isEmpty()) {
-            if (maze.getSpot(x+1,y) == ' ') {
-                queue.add(traverse(maze,x+1,y,queue.peek(),1));
+            if(queue.peek() == maze.getEnd()) {
+                maze.printMaze();
+                break;
             }
-            if (maze.getSpot(x-1,y) == ' ') {
-                queue.add(traverse(maze,x-1,y,queue.peek(),1));
+            maze.currentState[x][y] = '.';
+            if (maze.getSpot(x+1,y) == ' ' || maze.getSpot(x+1,y) == 'O') {
+                Node temp = traverse(maze,x+1,y,queue.peek(),1);
+                if (temp != null) queue.add(temp);
             }
-            if (maze.getSpot(x,y+1) == ' ') {
+            if (maze.getSpot(x-1,y) == ' '|| maze.getSpot(x-1,y) == 'O') {
+                Node temp = traverse(maze,x-1,y,queue.peek(),1);
+                if (temp != null) queue.add(temp);
+            }
+            if (maze.getSpot(x,y+1) == ' '|| maze.getSpot(x,y+1) == 'O') {
                 Node temp = traverse(maze,x,y+1,queue.peek(),1);
-                queue.add(temp);
+                if (temp != null) queue.add(temp);
             }
-            if (maze.getSpot(x,y-1) == ' ') {
-                queue.add(traverse(maze,x,y-1,queue.peek(),1));
-            }
+            if (maze.getSpot(x,y-1) == ' '|| maze.getSpot(x,y-1) == 'O') {
+                Node temp = traverse(maze,x,y-1,queue.peek(),1);
+                if (temp != null) queue.add(temp);            }
+            //maze.printMaze();
+            queue.remove(queue.peek());
+            x = queue.peek().getX();
+            y = queue.peek().getY();
 
         }
         //maze.printMaze();
@@ -80,17 +91,17 @@ public class Search {
              * as it's next node in the path.
              */
             inMaze.currentState[x][y]= '.';
-            inMaze.printMaze();
-            if(inMaze.currentState[x][y+1]==' ' || inMaze.currentState[x][y+1]=='O'){
+            //inMaze.printMaze();
+            if(inMaze.currentState[x][y+1]==' ' || inMaze.currentState[x][y+1]=='O' || inMaze.currentState[x][y+1]=='*'){
                 found = traverse(inMaze,x,(y+1), base, weight);
             }
-            else if(inMaze.currentState[x+1][y]==' ' || inMaze.currentState[x+1][y]=='O'){
+            else if(inMaze.currentState[x+1][y]==' ' || inMaze.currentState[x+1][y]=='O'|| inMaze.currentState[x+1][y]=='*'){
                 found = traverse(inMaze,(x+1),y, base, weight);
             }
-            else if(inMaze.currentState[x][y-1]==' ' || inMaze.currentState[x][y-1]=='O'){
+            else if(inMaze.currentState[x][y-1]==' ' || inMaze.currentState[x][y-1]=='O'|| inMaze.currentState[x][y-1]=='*'){
                 found = traverse(inMaze,x,(y-1), base, weight);
             }
-            else if (inMaze.currentState[x-1][y]==' ' || inMaze.currentState[x-1][y]=='O'){
+            else if (inMaze.currentState[x-1][y]==' ' || inMaze.currentState[x-1][y]=='O'|| inMaze.currentState[x-1][y]=='*'){
                 found = traverse(inMaze,(x-1),y, base, weight);
             }
             else found=null;

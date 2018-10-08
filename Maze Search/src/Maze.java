@@ -28,6 +28,7 @@ public class Maze {
     }
 
     public void printMaze(){
+        System.out.print("\n");
         for(int x = 0; x < mazeHeight; x++){
             for (int y = 0; y < mazeWidth; y++) {
                 System.out.print(currentState[x][y] + " ");
