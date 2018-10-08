@@ -14,10 +14,8 @@ public class driver {
         Maze openMaze = readMazeIn("open maze.txt");
 
         mediumMaze.printMaze();
-
-        //System.out.print(mediumMaze);
-        //System.out.print(largeMaze);
-        //System.out.print(openMaze);
+        //mediumMaze.printStart();
+        //mediumMaze.printEnd();
 
     }
 
