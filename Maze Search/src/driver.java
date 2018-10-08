@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-
 /* This class is the main driver for our assignment 1, using various search algorithms on static mazes
  * of various dimension and attributes.
  */
