@@ -10,7 +10,7 @@ public class Maze {
     private int mazeWidth;
     private int mazeHeight;
     Node[] list;
-    Graph graph;
+    EdgeWeightedGraph graph;
 
     public Maze(char[][] textMaze) {
         mazeWidth=textMaze[0].length;
@@ -73,7 +73,7 @@ public class Maze {
         }
 
         System.out.println(s);
-        graph = new Graph(s);   // find length of array list and create graph with that many nodes
+        graph = new EdgeWeightedGraph(s);   // find length of array list and create graph with that many nodes
     }
 
 
@@ -82,8 +82,9 @@ public class Maze {
         int y = temp.getY();
 
         list[(x*100+y)]= temp;
-
     }
+
+
 
     public Node hashpull(int x,int y){
         Node temp = list[(x*100)+y];
