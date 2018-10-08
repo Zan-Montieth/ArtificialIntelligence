@@ -127,4 +127,12 @@ public class Maze {
     public char getSpot(int inX, int inY){
         return currentState[inX][inY];
     }
+    public Node getStart(){
+        return start;
+    }
+
+    public Node getEnd(){
+        return end;
+    }
+
 }
