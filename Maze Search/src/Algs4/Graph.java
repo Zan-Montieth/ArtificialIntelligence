@@ -1,4 +1,5 @@
-package Algs4; /******************************************************************************
+package Algs4;
+/******************************************************************************
  *  Compilation:  javac Algs4.Graph.java
  *  Execution:    java Algs4.Graph input.txt
  *  Dependencies: Algs4.Bag.java Algs4.Stack.java Algs4.In.java Algs4.StdOut.java
