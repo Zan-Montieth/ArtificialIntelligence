@@ -15,11 +15,11 @@ public class Node {
     }
 
 
-    public int getXCoord(){
+    public int getX(){
         return xCoord;
     }
 
-    public int getYCoord(){
+    public int getY(){
         return yCoord;
     }
     public int getMinDistance(){

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import Algs4.Graph;
 public class Maze {
 
     Node start;
@@ -49,11 +50,18 @@ public class Maze {
     }
 
     public void printStart() {
-        System.out.printf("Start at (%d,%d)\n", start.getXCoord(), start.getYCoord());
+        System.out.printf("Start at (%d,%d)\n", start.getX(), start.getY());
     }
 
     public void printEnd() {
-        System.out.printf("End at (%d,%d)\n", end.getXCoord(), end.getYCoord());
+        System.out.printf("End at (%d,%d)\n", end.getX(), end.getY());
+    }
+
+    private void assign(char[][] assignTo, char[][] assignFrom) {
+        for (int i = 0; i < mazeHeight; i++)
+            for (int j = 0; j < mazeWidth; j++){
+                assignTo[i][j] = assignFrom[i][j];
+            }
     }
 
 }
