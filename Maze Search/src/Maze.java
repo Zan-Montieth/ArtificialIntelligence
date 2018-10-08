@@ -124,4 +124,12 @@ public class Maze {
             for (int j = 0; j < mazeWidth; j++) assignTo[i][j] = assignFrom[i][j];
     }
 
+    public Node getStart(){
+        return start;
+    }
+
+    public Node getEnd(){
+        return end;
+    }
+
 }

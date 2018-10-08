@@ -7,7 +7,7 @@ public class Search {
 
 
     public void Search(Maze currentMaze) {
-/*        maze = currentMaze;
+        maze = currentMaze;
         runBFS(maze);
         runDPS(maze);
         runGBFS(maze);
@@ -15,8 +15,8 @@ public class Search {
     }
 
     private void runBFS(Maze maze) {
-        int x = maze.getFirst().getX();
-        int y = maze.getFirst().getY();
+        int x = maze.getStart().getX();
+        int y = maze.getStart().getY();
 
     }
 
@@ -32,13 +32,13 @@ public class Search {
 
     }
 
-    private Node traverse(Maze inMaze, int startX, int startY, int endX, int endY) {
+    /*private Node traverse(Maze inMaze, int startX, int startY, int endX, int endY) {
         Node found;
         if (inMaze.isNode(endX,endY)) found = inMaze.getNode(endX,endY);
         else {
             if ();
         }
-*/
-    }
+
+    }*/
 
 }
