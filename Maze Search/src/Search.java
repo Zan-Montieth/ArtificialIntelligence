@@ -10,8 +10,13 @@ public class Search {
         maze = currentMaze;
         runBFS(maze);
         maze.reset();
+
         runDPS(maze);
+        maze.reset();
+
         runGBFS(maze);
+        maze.reset();
+
         runAS(maze);
     }
 
