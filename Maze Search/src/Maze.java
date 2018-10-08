@@ -11,8 +11,8 @@ public class Maze {
 
 
     public Maze(char[][] textMaze) {
-        baseMaze=textMaze;
-        currentState = textMaze;
+        assign(baseMaze,textMaze);
+        assign(currentState,textMaze);
         mazeWidth=textMaze[0].length;
         mazeHeight=textMaze.length;
         start = findStart();
