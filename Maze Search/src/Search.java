@@ -33,25 +33,29 @@ public class Search {
 
     }
 
-    private Node traverse(Maze inMaze, int startX, int startY, int endX, int endY) {
+    private Node traverse(Maze inMaze, int x, int y) {
         Node found;
-        if (inMaze.hashpull(endX,endY) != null) found = inMaze.hashpull(endX,endY);
-        else {
-            if (inMaze.getSpot(endX+1,endY) == ' ') {
-                found = traverse(inMaze, endX, endY, endX + 1, endY);
+        if (inMaze.hashpull(x, y) !=null) {
+            found = inMaze.hashpull(x, y);  // if node found
+
+        }
+        else {          //if node not found keep walking
+            inMaze.currentState[x][y]= '.';
+            if(inMaze.currentState[x][y+1]==' '){
+                found = traverse(inMaze,x,(y+1));
+
             }
-            if (inMaze.getSpot(endX-1,endY) == ' ') {
-                found = traverse(inMaze, endX, endY, endX - 1, endY);
+            if(inMaze.currentState[x+1][y]==' '){
+                found = traverse(inMaze,x+1,y);
             }
-            if (inMaze.getSpot(endX,endY+1) == ' ') {
-                found = traverse(inMaze, endX, endY, endX, endY+1);
+            if(inMaze.currentState[x][y-1]==' '){
+                found = traverse(inMaze,x,(y-1));
             }
             else{
-                found = traverse(inMaze, endX, endY, endX, endY-1);
+                found = traverse(inMaze,x-1,y);
             }
         }
-        return found;
-
+        return(found);
     }
 
 }
