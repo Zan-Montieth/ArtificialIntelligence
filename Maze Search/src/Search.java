@@ -5,18 +5,19 @@ public class Search {
 
     Maze maze;
     PriorityQueue<Node> queue = new PriorityQueue<Node>();
+    PriorityQueue<Node> GFSqueue = new PriorityQueue<Node>();
 
 
 
     public Search(Maze currentMaze) {
         maze = currentMaze;
-        runBFS(maze);
+        //runBFS(maze);
         maze.reset();
 
-        runDPS(maze);
+        //runDPS(maze);
         maze.reset();
 
-        runGBFS(maze);
+        runGFS(maze);
         maze.reset();
 
         runAS(maze);
@@ -56,7 +57,7 @@ public class Search {
             y = queue.peek().getY();
 
         }
-        //maze.printMaze();
+        maze.printMaze();
 
     }
 
@@ -64,8 +65,47 @@ public class Search {
 
     }
 
-    private void runGBFS(Maze maze) {
-
+    private void runGFS(Maze maze) {
+        int x = maze.getStart().getX();
+        int y = maze.getStart().getY();
+        Node temp;
+        GFSqueue.add(maze.getStart());
+        Node closest = maze.getStart();
+        while(!queue.isEmpty()) {
+            if(queue.peek() == maze.getEnd()) {
+                maze.printMaze();
+                break;
+            }
+            maze.currentState[x][y] = '.';
+            if (isDownNode(maze, x, y)) {
+                temp = traverse(maze, x + 1, y, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isUpNode(maze, x, y)) {
+                temp = traverse(maze, x - 1, y, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isRightNode(maze, x, y)) {
+                temp = traverse(maze, x, y + 1, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isLeftNode(maze, x, y)) {
+                temp = traverse(maze, x, y - 1, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            GFSqueue.add(closest);
+            x = GFSqueue.peek().getX();
+            y = GFSqueue.peek().getY();
+        }
+        maze.printMaze();
     }
 
     private void runAS(Maze maze) {
