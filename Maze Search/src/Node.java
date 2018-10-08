@@ -39,6 +39,13 @@ public class Node implements Comparable {
     public int getY(){
         return yCoord;
     }
+
+    public void chekcMinDistance(int i,Node from){  // take potential new min dist and if less then previous then update
+        if(i< minDistance){
+            minDistance=i;
+            minPathLink = from;
+        }
+    }
     public int getMinDistance(){
         if(minPathLink== null){
             return minDistance;
