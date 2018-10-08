@@ -1,9 +1,8 @@
-import java.io.*;
-import java.util.*;
+import Algs4.Stack;
 
 public class DFS {
 
-    Stack<Object> stack = new Stack<Object>();
+    Stack<Object> stack = new Algs4.Stack<Object>();
     Maze maze;
 
     public DFS(Maze inMaze){
