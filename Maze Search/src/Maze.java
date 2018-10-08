@@ -9,7 +9,7 @@ public class Maze {
     char[][] currentState;
     private int mazeWidth;
     private int mazeHeight;
-    List<Node> list;
+    Node[] list;
     Graph graph;
 
     public Maze(char[][] textMaze) {
@@ -23,7 +23,7 @@ public class Maze {
         end = findEnd();
         int start;
         int end;
-        list = new ArrayList<>();
+        list = new Node[10000];
         createGraph();
     }
 
@@ -38,8 +38,9 @@ public class Maze {
 
     private void createGraph(){
         //create nodes for start and end
-        list.add(start);
-        list.add(end);
+        hashIndex(start);
+        hashIndex(end);
+        int s =2;
         for(int i =0; i<mazeHeight;i++){  // non edge values
             for(int j=0; j<mazeWidth;j++){
                 int count = 0;
@@ -58,8 +59,9 @@ public class Maze {
                     }
                     if(count>=3){
                         Node node = new Node(i,j);
-                        list.add(node);
+                        hashIndex(node);
                         currentState[i][j] = 'O';
+                        s++;
                     }
 
 
@@ -68,9 +70,23 @@ public class Maze {
                                           // store in array list of nodes
             }
         }
-        int s = list.size();
+
         System.out.println(s);
         graph = new Graph(s);   // find length of array list and create graph with that many nodes
+    }
+
+
+    public void hashIndex(Node temp){
+        int x = temp.getX();
+        int y = temp.getY();
+
+        list[(x*100+y)]= temp;
+
+    }
+
+    public Node hashpull(int x,int y){
+        Node temp = list[(x*100)+y];
+        return(temp);
     }
 
 
