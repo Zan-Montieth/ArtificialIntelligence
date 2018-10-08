@@ -34,7 +34,7 @@ public class Search {
 
     private Node traverse(Maze inMaze, int startX, int startY, int endX, int endY) {
         Node found;
-        if (inMaze.isNode(endX,endY)) found = inMaze.getNode(endX,endY);
+        if (inMaze.hashpull(endX,endY) != null) found = inMaze.hashpull(endX,endY);
         else {
             if (inMaze.getSpot(endX+1,endY) == ' ') {
                 found = traverse(inMaze, endX, endY, endX + 1, endY);

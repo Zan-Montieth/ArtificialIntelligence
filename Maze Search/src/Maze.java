@@ -60,6 +60,7 @@ public class Maze {
                     if(count>=3){
                         Node node = new Node(i,j);
                         hashIndex(node);
+                        node.setEndDistance(end.getX(),end.getY());
                         currentState[i][j] = 'O';
                         s++;
                     }

@@ -15,6 +15,9 @@ public class Node {
 
     }
 
+    public void setEndDistance(int endX, int endY){
+        endDistance = Math.abs(xCoord-endX) + Math.abs(yCoord-endY);
+    }
 
     public int getX(){
         return xCoord;
