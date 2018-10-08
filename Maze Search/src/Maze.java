@@ -40,7 +40,7 @@ public class Maze {
         //create nodes for start and end
         hashIndex(start);
         hashIndex(end);
-        int s =2;
+        int s = 1; // changed so it holds the correct value from the graph, add 1 to find total count
         for(int i =0; i<mazeHeight;i++){  // non edge values
             for(int j=0; j<mazeWidth;j++){
                 int count = 0;
@@ -58,7 +58,7 @@ public class Maze {
                         count++;
                     }
                     if(count>=3){
-                        Node node = new Node(i,j);
+                        Node node = new Node(i,j,s);
                         hashIndex(node);
                         node.setEndDistance(end.getX(),end.getY());
                         currentState[i][j] = 'O';
@@ -97,7 +97,7 @@ public class Maze {
         for (int i=0; i < mazeHeight; i++)
             for (int j = 0; j < mazeWidth; j++)
                 if (baseMaze[i][j] == 'P') {
-                    start = new Node(i, j);
+                    start = new Node(i, j, 0);
                     //System.out.printf("start at (%d,%d)\n", i, j);
                 }
         return start;
@@ -107,7 +107,7 @@ public class Maze {
         for (int i = 0; i < mazeHeight; i++)
             for (int j = 0; j < mazeWidth; j++)
                 if (baseMaze[i][j] == '*') {
-                    end = new Node(i, j);
+                    end = new Node(i, j, 1);
                     //System.out.printf("end at (%d,%d)\n", i, j);
                 }
         return end;

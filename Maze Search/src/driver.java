@@ -13,6 +13,7 @@ public class driver {
         Maze openMaze = readMazeIn("open maze.txt");
 
         mediumMaze.printMaze();
+        Search medSearch = new Search(mediumMaze);
         //largeMaze.printMaze();
         //openMaze.printMaze();
 
