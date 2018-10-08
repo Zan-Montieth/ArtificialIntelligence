@@ -35,19 +35,19 @@ public class Search {
                 break;
             }
             maze.currentState[x][y] = '.';
-            if (maze.getSpot(x+1,y) == ' ' || maze.getSpot(x+1,y) == 'O') {
+            if (isDownNode(maze,x,y)) {
                 Node temp = traverse(maze,x+1,y,queue.peek(),1);
                 if (temp != null) queue.add(temp);
             }
-            if (maze.getSpot(x-1,y) == ' '|| maze.getSpot(x-1,y) == 'O') {
+            if (isUpNode(maze,x,y)) {
                 Node temp = traverse(maze,x-1,y,queue.peek(),1);
                 if (temp != null) queue.add(temp);
             }
-            if (maze.getSpot(x,y+1) == ' '|| maze.getSpot(x,y+1) == 'O') {
+            if (isRightNode(maze,x,y)) {
                 Node temp = traverse(maze,x,y+1,queue.peek(),1);
                 if (temp != null) queue.add(temp);
             }
-            if (maze.getSpot(x,y-1) == ' '|| maze.getSpot(x,y-1) == 'O') {
+            if (isLeftNode(maze,x,y)) {
                 Node temp = traverse(maze,x,y-1,queue.peek(),1);
                 if (temp != null) queue.add(temp);            }
             //maze.printMaze();
@@ -92,16 +92,16 @@ public class Search {
              */
             inMaze.currentState[x][y]= '.';
             //inMaze.printMaze();
-            if(inMaze.currentState[x][y+1]==' ' || inMaze.currentState[x][y+1]=='O' || inMaze.currentState[x][y+1]=='*'){
+            if(isRightNode(inMaze,x,y)){
                 found = traverse(inMaze,x,(y+1), base, weight);
             }
-            else if(inMaze.currentState[x+1][y]==' ' || inMaze.currentState[x+1][y]=='O'|| inMaze.currentState[x+1][y]=='*'){
+            else if(isDownNode(inMaze,x,y)){
                 found = traverse(inMaze,(x+1),y, base, weight);
             }
-            else if(inMaze.currentState[x][y-1]==' ' || inMaze.currentState[x][y-1]=='O'|| inMaze.currentState[x][y-1]=='*'){
+            else if(isLeftNode(inMaze,x,y)){
                 found = traverse(inMaze,x,(y-1), base, weight);
             }
-            else if (inMaze.currentState[x-1][y]==' ' || inMaze.currentState[x-1][y]=='O'|| inMaze.currentState[x-1][y]=='*'){
+            else if (isUpNode(inMaze,x,y)){
                 found = traverse(inMaze,(x-1),y, base, weight);
             }
             else found=null;
@@ -110,4 +110,19 @@ public class Search {
         return(found);
     }
 
+    private Boolean isUpNode(Maze inMaze, int x,int y) {
+        return (inMaze.currentState[x-1][y]==' ' || inMaze.currentState[x-1][y]=='O'|| inMaze.currentState[x-1][y]=='*');
+    }
+
+    private Boolean isDownNode(Maze inMaze, int x,int y) {
+        return (inMaze.currentState[x+1][y]==' ' || inMaze.currentState[x+1][y]=='O'|| inMaze.currentState[x+1][y]=='*');
+    }
+
+    private Boolean isLeftNode(Maze inMaze, int x,int y) {
+        return (inMaze.currentState[x][y-1]==' ' || inMaze.currentState[x][y-1]=='O'|| inMaze.currentState[x][y-1]=='*');
+    }
+
+    private Boolean isRightNode(Maze inMaze, int x,int y) {
+        return (inMaze.currentState[x][y+1]==' ' || inMaze.currentState[x][y+1]=='O' || inMaze.currentState[x][y+1]=='*');
+    }
 }
