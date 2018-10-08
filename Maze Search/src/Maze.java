@@ -69,7 +69,7 @@ public class Maze {
             }
         }
         int s = list.size();
-        System.out.println(s);
+        //System.out.println(s);
         graph = new Graph(s);   // find length of array list and create graph with that many nodes
     }
 
@@ -101,6 +101,10 @@ public class Maze {
 
     public void printEnd() {
         System.out.printf("End at (%d,%d)\n", end.getX(), end.getY());
+    }
+
+    public char getSpot(int inX, int inY) {
+        return currentState[inX][inY];
     }
 
     private void assign(char[][] assignTo, char[][] assignFrom) {
