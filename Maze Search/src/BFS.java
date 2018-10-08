@@ -5,7 +5,7 @@ public class BFS {
     Queue<Object> queue = new PriorityQueue<Object>();
 
     Maze maze;
-    int lastOptionCount = numOptions(maze.start.getXCoord(),maze.start.getYCoord());
+    int lastOptionCount = numOptions(maze.start.getX(),maze.start.getY());
     int parentDist =0;
     Node lastNode;
 
@@ -19,10 +19,10 @@ public class BFS {
 
     public void recurBFS(int x, int y){
 
-        if(maze.start.getYCoord()== y && maze.start.getXCoord()==x){  // Start state check
+        if(maze.start.getY()== y && maze.start.getX()==x){  // Start state check
             //Start state
         }
-        else if(maze.end.getYCoord()== y && maze.end.getXCoord()==x){  // Goal state check
+        else if(maze.end.getY()== y && maze.end.getX()==x){  // Goal state check
             //Goal state
         }
         else if(maze.currentState[x][y] == '.'){     //already visited

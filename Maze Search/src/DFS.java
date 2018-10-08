@@ -11,7 +11,7 @@ public class DFS {
     }
 
     public void recurDFS(int x, int y){
-        if(maze.start.getYCoord()== y && maze.start.getXCoord()==x){   // Check Goal state
+        if(maze.start.getY()== y && maze.start.getX()==x){   // Check Goal state
             // need to return the min path?
         }
         else if(maze.currentState[x][y] == '.'){     //already visited
