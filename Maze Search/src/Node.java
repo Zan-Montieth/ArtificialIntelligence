@@ -17,11 +17,13 @@ public class Node implements Comparable {
 
     }
 
+    @Override
     public int compareTo(Object o) {
-        if (true) return 0;
-        else if (true) return 1;
+        if(o.getClass() == this.getClass()) {
+            if (((Node) o).getMinDistance() < this.getMinDistance()) return 1; // if that node is smaller
+            else return 0; // if this node is smaller
+        }
         else return -1;
-
     }
 
     public void setEndDistance(int endX, int endY){

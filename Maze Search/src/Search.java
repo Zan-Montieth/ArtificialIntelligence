@@ -13,7 +13,7 @@ public class Search {
         runBFS(maze);
         maze.reset();
 
-        runDPS(maze);
+        runDFS(maze);
         maze.reset();
 
         runGBFS(maze);
@@ -25,42 +25,40 @@ public class Search {
     private void runBFS(Maze maze) {
         int x = maze.getStart().getX();
         int y = maze.getStart().getY();
-        //int y = 6;
-        //int x = 1;
         queue.add(maze.getStart());
         //System.out.println(queue.contains(maze.getStart()));
         while (!queue.isEmpty()) {
-            if(queue.peek() == maze.getEnd()) {
+            Node top = queue.poll();
+            if(top == maze.getEnd()) {
                 maze.printMaze();
                 break;
             }
             maze.currentState[x][y] = '.';
             if (isDownNode(maze,x,y)) {
-                Node temp = traverse(maze,x+1,y,queue.peek(),1);
-                if (temp != null) queue.add(temp);
+                Node temp = traverse(maze,x+1,y,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
             }
             if (isUpNode(maze,x,y)) {
-                Node temp = traverse(maze,x-1,y,queue.peek(),1);
-                if (temp != null) queue.add(temp);
+                Node temp = traverse(maze,x-1,y,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
             }
             if (isRightNode(maze,x,y)) {
-                Node temp = traverse(maze,x,y+1,queue.peek(),1);
-                if (temp != null) queue.add(temp);
+                Node temp = traverse(maze,x,y+1,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
             }
             if (isLeftNode(maze,x,y)) {
-                Node temp = traverse(maze,x,y-1,queue.peek(),1);
-                if (temp != null) queue.add(temp);            }
-            //maze.printMaze();
-            queue.remove(queue.peek());
+                Node temp = traverse(maze,x,y-1,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);            }
+            maze.printMaze();
             x = queue.peek().getX();
             y = queue.peek().getY();
-
+            System.out.printf("Next node is %d,%d\n",x,y);
         }
         //maze.printMaze();
 
     }
 
-    private void runDPS(Maze maze) {
+    private void runDFS(Maze maze) {
 
     }
 
