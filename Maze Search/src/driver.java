@@ -12,10 +12,10 @@ public class driver {
         Maze largeMaze = readMazeIn("large maze.txt");    // read in from static files
         Maze openMaze = readMazeIn("open maze.txt");
 
-        mediumMaze.printMaze();
-        Search medSearch = new Search(mediumMaze);
-        largeMaze.printMaze();
-        Search largeSearch = new Search(largeMaze);
+        //mediumMaze.printMaze();
+        //Search medSearch = new Search(mediumMaze);
+        //largeMaze.printMaze();
+        //Search largeSearch = new Search(largeMaze);
         openMaze.printMaze();
         Search openSearch = new Search(openMaze);
         //largeMaze.printMaze();

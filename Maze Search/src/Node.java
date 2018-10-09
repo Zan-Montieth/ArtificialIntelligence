@@ -43,7 +43,7 @@ public class Node implements Comparable {
         return yCoord;
     }
 
-    public void chekcMinDistance(int i,Node from){  // take potential new min dist and if less then previous then update
+    public void checkMinDistance(int i,Node from){  // take potential new min dist and if less then previous then update
         if(i< minDistance){
             minDistance=i;
             minPathLink = from;
@@ -58,4 +58,15 @@ public class Node implements Comparable {
         }
 
     }
+
+    public void addManh(Maze maze){
+        minDistance+= Math.abs(xCoord-maze.getEnd().getX())+Math.abs(yCoord-maze.getEnd().getY());
+    }
+    public void removeManh(Maze maze){
+        minDistance-= Math.abs(xCoord-maze.getEnd().getX())+Math.abs(yCoord-maze.getEnd().getY());
+    }
+    public Node getMinPathLink(){
+        return minPathLink;
+    }
+
 }

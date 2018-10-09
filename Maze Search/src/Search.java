@@ -23,15 +23,10 @@ public class Search {
         maze.reset();
 
         runAS(maze);
+        //System.out.println(maze.start.getMinDistance());
     }
 
-     public int compare(Node s1, Node s2) {
-        if (s1.getMinDistance() < s2.getMinDistance())
-            return 1;
-        else if (s1.getMinDistance() > s2.getMinDistance())
-            return -1;
-        return 0;
-    }
+
 
 
 
@@ -185,6 +180,70 @@ public class Search {
 
     private void runAS(Maze maze) {
 
+
+        AS.insert(maze.start);
+        while(!AS.isEmpty()) {
+
+            Node temp = AS.delMin();                    //temp is where we are
+            System.out.println("min dist" + temp.getMinDistance());
+            int x = temp.getX();
+            int y = temp.getY();
+            System.out.println(x + "," + y);
+            if (temp == maze.end) {// Goal check
+                System.out.println("Goal reached");
+                maze.printMaze();
+                break;
+            }
+            //int manh =0;
+            maze.currentState[x][y] = '.';
+            if (isUpNode(maze, x, y)) {           //0 update weightplus as path length + manhattan dist
+                Node check = traverse(maze, x - 1, y, temp, 0);
+                //manh = manhattan(temp,maze.end);
+                if (check != null) {
+
+                    int t = check.getMinDistance();
+                    System.out.println(t);
+                    check.addManh(maze);
+                    AS.insert(check);
+                    check.removeManh(maze);
+                }
+            }
+            if (isRightNode(maze, x, y)) {         //1
+                //manh = manhattan(temp,maze.end);
+                Node check = traverse(maze, x, y + 1, temp, 0);
+                if (check != null) {
+                    //System.out.println("Right potato");
+                    int t = check.getMinDistance();
+                    System.out.println(t);
+                    check.addManh(maze);
+                    AS.insert(check);
+                    check.removeManh(maze);
+                }
+            }
+            if (isDownNode(maze, x, y)) {         //2
+                //manh = manhattan(temp,maze.end);
+                Node check = traverse(maze, x + 1, y, temp, 0);
+                if (check != null) {
+                    int t = check.getMinDistance();
+                    System.out.println(t);
+                    check.addManh(maze);
+                    AS.insert(check);
+                    check.removeManh(maze);
+                }
+            }
+            if (isLeftNode(maze, x, y)) {         //3
+                // manh = manhattan(temp,maze.end);
+                Node check = traverse(maze, x, y - 1, temp, 0);
+                if (check != null) {
+                    int t = check.getMinDistance();
+                    System.out.println(t);
+                    check.addManh(maze);
+                    AS.insert(temp);
+                    check.removeManh(maze);
+                }
+            }
+            maze.printMaze();
+        }
     }
 
     private Boolean stackContains(Stack<Node> stack, Node node) {
@@ -198,7 +257,9 @@ public class Search {
     private Node traverse(Maze inMaze, int x, int y, Node base, int weight) { // weight should be 1 bc starting at node +1
         Node found;
         weight++;
+        System.out.println("weight is "+ weight);
         if (inMaze.hashpull(x, y) !=null) {
+            System.out.println("found node at "+x+", "+y);
             found = inMaze.hashpull(x, y);  // if node found
             //Node temp = inMaze.hashpull(x,y);
             //int baseNum = (base.getX()*100)+base.getY();
@@ -208,7 +269,7 @@ public class Search {
             //System.out.println(startNode);
             //Edge edge = new Edge(endNode, startNode, weight);
             //inMaze.graph.addEdge(edge);
-            found.chekcMinDistance(weight,base);
+            found.checkMinDistance(weight,base);
         }
         else {          //if node not found keep walking
             /* Need to add in check that it isnt finding the base node
