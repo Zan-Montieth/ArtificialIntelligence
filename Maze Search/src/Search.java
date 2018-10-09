@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.PriorityQueue;
 import Algs4.*;
 
@@ -11,16 +12,16 @@ public class Search {
     MinPQ<Node> AS = new MinPQ<Node>();
 
     public Search(Maze currentMaze) {
-        /*maze = currentMaze;
+        maze = currentMaze;
         runBFS(maze);
         maze.reset();
 
         runDFS(maze);
         maze.reset();
 
-        runGBFS(maze);
+        //runGBFS(maze);
         maze.reset();
-        */
+
         runAS(maze);
     }
 
@@ -37,12 +38,13 @@ public class Search {
     private void runBFS(Maze maze) {
         int x = maze.getStart().getX();
         int y = maze.getStart().getY();
-        //int y = 6;
-        //int x = 1;
+        int frontierNodes  = 0;
+        int completedNodes = 0;
         queue.add(maze.getStart());
         //System.out.println(queue.contains(maze.getStart()));
         while (!queue.isEmpty()) {
             Node top = queue.poll();
+            completedNodes++;
             if(top == maze.getEnd()) {
                 maze.printMaze();
                 break;
@@ -50,35 +52,94 @@ public class Search {
             maze.currentState[x][y] = '.';
             if (isDownNode(maze,x,y)) {
                 Node temp = traverse(maze,x+1,y,top,1);
-                if (temp != null && !queue.contains(temp)) queue.add(temp);
+                if (temp != null && !queue.contains(temp)) {
+                    queue.add(temp);
+                    frontierNodes++;
+                }
             }
             if (isUpNode(maze,x,y)) {
                 Node temp = traverse(maze,x-1,y,top,1);
-                if (temp != null && !queue.contains(temp)) queue.add(temp);
+                if (temp != null && !queue.contains(temp)) {
+                    queue.add(temp);
+                    frontierNodes++;
+                }
             }
             if (isRightNode(maze,x,y)) {
                 Node temp = traverse(maze,x,y+1,top,1);
-                if (temp != null && !queue.contains(temp)) queue.add(temp);
+                if (temp != null && !queue.contains(temp)) {
+                    queue.add(temp);
+                    frontierNodes++;
+                }
             }
             if (isLeftNode(maze,x,y)) {
                 Node temp = traverse(maze,x,y-1,top,1);
-                if (temp != null && !queue.contains(temp)) queue.add(temp);            }
-            maze.printMaze();
+                if (temp != null && !queue.contains(temp)) {
+                    queue.add(temp);
+                    frontierNodes++;
+                }
+            }
+            //maze.printMaze();
             x = queue.peek().getX();
             y = queue.peek().getY();
-            System.out.printf("Next node is %d,%d\n",x,y);
+            //System.out.printf("Next node is %d,%d\n",x,y);
         }
         //maze.printMaze();
-
+        System.out.printf("Number of frontier nodes = %d\nNumber of completed nodes = %d",frontierNodes-completedNodes, completedNodes);
     }
 
     private void runDFS(Maze maze) {
-        stack.push(maze.start);    // put start on the stack
-
+        int x = maze.getStart().getX();
+        int y = maze.getStart().getY();
+        int frontierNodes  = 0;
+        int completedNodes = 0;
+        stack.push(maze.getStart());
+        //System.out.println(queue.contains(maze.getStart()));
+        while (!stack.isEmpty()) {
+            Node top = stack.pop();
+            completedNodes++;
+            if(top == maze.getEnd()) {
+                maze.printMaze();
+                break;
+            }
+            maze.currentState[x][y] = '.';
+            if (isUpNode(maze,x,y)) {
+                Node temp = traverse(maze,x-1,y,top,1);
+                if (temp != null && !stackContains(stack,temp)) {
+                    stack.push(temp);
+                    frontierNodes++;
+                }
+            }
+            if (isDownNode(maze,x,y)) {
+                Node temp = traverse(maze,x+1,y,top,1);
+                if (temp != null && !stackContains(stack, temp)) {
+                    stack.push(temp);
+                    frontierNodes++;
+                }
+            }
+            if (isRightNode(maze,x,y)) {
+                Node temp = traverse(maze,x,y+1,top,1);
+                if (temp != null && !stackContains(stack,temp)) {
+                    stack.push(temp);
+                    frontierNodes++;
+                }
+            }
+            if (isLeftNode(maze,x,y)) {
+                Node temp = traverse(maze,x,y-1,top,1);
+                if (temp != null && !stackContains(stack,temp)) {
+                    stack.push(temp);
+                    frontierNodes++;
+                }            }
+            //maze.printMaze();
+            x = stack.peek().getX();
+            y = stack.peek().getY();
+            //System.out.printf("Next node is %d,%d\n",x,y);
+        }
+        //maze.printMaze();
+        System.out.printf("Number of frontier nodes = %d\nNumber of completed nodes = %d",frontierNodes-completedNodes, completedNodes);
     }
 
     private void runGBFS(Maze maze) {
-        /*int x = maze.getStart().getX();
+        int x = maze.getStart().getX();
         int y = maze.getStart().getY();
         Node temp;
         GFSqueue.add(maze.getStart());
@@ -122,8 +183,14 @@ public class Search {
 
     private void runAS(Maze maze) {
 
-        }
+    }
 
+    private Boolean stackContains(Stack<Node> stack, Node node) {
+        Iterator<Node> iter = stack.iterator();
+        while (iter.hasNext()) {
+            if (iter.next() == node) return true;
+        }
+        return false;
     }
 
     private Node traverse(Maze inMaze, int x, int y, Node base, int weight) { // weight should be 1 bc starting at node +1

@@ -73,7 +73,7 @@ public class Maze {
             }
         }
 
-        System.out.println(s);
+        //System.out.println(s);
         graph = new EdgeWeightedGraph(s);   // find length of array list and create graph with that many nodes
     }
 
@@ -140,5 +140,6 @@ public class Maze {
 
     public void reset(){
         assign(currentState,baseMaze);
+        createGraph();
     }
 }

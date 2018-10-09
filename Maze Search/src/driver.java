@@ -16,8 +16,8 @@ public class driver {
         Search medSearch = new Search(mediumMaze);
         //largeMaze.printMaze();
         //Search largeSearch = new Search(largeMaze);
-        //openMaze.printMaze();
-        //Search openSearch = new Search(openMaze);
+        openMaze.printMaze();
+        Search openSearch = new Search(openMaze);
         //largeMaze.printMaze();
         //openMaze.printMaze();
 
