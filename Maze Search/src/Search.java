@@ -122,7 +122,7 @@ public class Search {
         while(!AS.isEmpty()){
 
             Node temp = AS.delMin();                    //temp is where we are
-            System.out.println("min dist"+temp.getMinDistance());
+            System.out.println("min dist "+temp.getMinDistance());
             int x = temp.getX();
             int y = temp.getY();
             System.out.println(x+","+y);
@@ -133,54 +133,43 @@ public class Search {
             }
             //int manh =0;
             maze.currentState[x][y] = '.';
+            maze.printMaze();
             if (isUpNode(maze,x,y)) {           //0 update weightplus as path length + manhattan dist
                 Node check = traverse(maze,x-1,y,temp,0);
                 //manh = manhattan(temp,maze.end);
-                if(check!= null){
-
-                    int t = check.getMinDistance();
-                    System.out.println(t);
-                    check.addManh(maze);
-                    AS.insert(check);
-                    check.removeManh(maze);
-                }
+                check(check);
             }
             if (isRightNode(maze,x,y)){         //1
                 //manh = manhattan(temp,maze.end);
                 Node check = traverse(maze,x,y+1,temp,0);
-                if(check!= null){
-                    //System.out.println("Right potato");
-                    int t = check.getMinDistance();
-                    System.out.println(t);
-                    check.addManh(maze);
-                    AS.insert(check);
-                    check.removeManh(maze);
-                }
+                check(check);
             }
             if (isDownNode(maze,x,y)) {         //2
                 //manh = manhattan(temp,maze.end);
                 Node check = traverse(maze,x+1,y,temp,0);
-                if(check!= null){
-                    int t = check.getMinDistance();
-                    System.out.println(t);
-                    check.addManh(maze);
-                    AS.insert(check);
-                    check.removeManh(maze);
-                }
+                check(check);
             }
             if (isLeftNode(maze,x,y)) {         //3
                 // manh = manhattan(temp,maze.end);
                 Node check = traverse(maze,x,y-1,temp,0);
-                if(check!= null){
-                    int t = check.getMinDistance();
-                    System.out.println(t);
-                    check.addManh(maze);
-                    AS.insert(temp);
-                    check.removeManh(maze);
-                }
+                check(check);
             }
-            maze.printMaze();
 
+
+        }
+
+    }
+
+    private void check(Node check){
+        if(check!= null){
+            //System.out.println("Right potato");
+            int t = check.getMinDistance();
+            //System.out.println(t);
+            check.addManh(maze);
+            System.out.println("AS is "+ check.getMinDistance());
+            AS.insert(check);
+            check.removeManh(maze);
+            System.out.print("min dist "+check.getMinDistance());
         }
 
     }
