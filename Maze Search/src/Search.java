@@ -1,6 +1,5 @@
 import java.util.PriorityQueue;
 import Algs4.*;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class Search {
 
@@ -16,10 +15,10 @@ public class Search {
         /*runBFS(maze);
         maze.reset();
 
-        runDFS(maze);
+        /*runDFS(maze);
         maze.reset();
 
-        runGBFS(maze);
+        /*runGBFS(maze);
         maze.reset();
         */
         runAS(maze);
@@ -45,19 +44,19 @@ public class Search {
             }
             maze.currentState[x][y] = '.';
             if (isDownNode(maze,x,y)) {
-                Node temp = traverse(maze,x,y+1,top,1);
-                if (temp != null && !queue.contains(temp)) queue.add(temp);
-            }
-            if (isUpNode(maze,x,y)) {
-                Node temp = traverse(maze,x,y-1,top,1);
-                if (temp != null && !queue.contains(temp)) queue.add(temp);
-            }
-            if (isRightNode(maze,x,y)) {
                 Node temp = traverse(maze,x+1,y,top,1);
                 if (temp != null && !queue.contains(temp)) queue.add(temp);
             }
-            if (isLeftNode(maze,x,y)) {
+            if (isUpNode(maze,x,y)) {
                 Node temp = traverse(maze,x-1,y,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
+            }
+            if (isRightNode(maze,x,y)) {
+                Node temp = traverse(maze,x,y+1,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
+            }
+            if (isLeftNode(maze,x,y)) {
+                Node temp = traverse(maze,x,y-1,top,1);
                 if (temp != null && !queue.contains(temp)) queue.add(temp);            }
             maze.printMaze();
             x = queue.peek().getX();
