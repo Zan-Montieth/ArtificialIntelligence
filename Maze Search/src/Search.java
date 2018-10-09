@@ -122,7 +122,7 @@ public class Search {
         while(!AS.isEmpty()){
 
             Node temp = AS.delMin();                    //temp is where we are
-            System.out.println(temp.getMinDistance());
+            System.out.println("min dist"+temp.getMinDistance());
             int x = temp.getX();
             int y = temp.getY();
             System.out.println(x+","+y);
