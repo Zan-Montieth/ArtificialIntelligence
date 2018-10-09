@@ -25,6 +25,8 @@ public class Search {
     private void runBFS(Maze maze) {
         int x = maze.getStart().getX();
         int y = maze.getStart().getY();
+        //int y = 6;
+        //int x = 1;
         queue.add(maze.getStart());
         //System.out.println(queue.contains(maze.getStart()));
         while (!queue.isEmpty()) {
@@ -62,8 +64,47 @@ public class Search {
 
     }
 
-    private void runGBFS(Maze maze) {
-
+    private void runGFS(Maze maze) {
+        int x = maze.getStart().getX();
+        int y = maze.getStart().getY();
+        Node temp;
+        GFSqueue.add(maze.getStart());
+        Node closest = maze.getStart();
+        while(!queue.isEmpty()) {
+            if(queue.peek() == maze.getEnd()) {
+                maze.printMaze();
+                break;
+            }
+            maze.currentState[x][y] = '.';
+            if (isDownNode(maze, x, y)) {
+                temp = traverse(maze, x + 1, y, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isUpNode(maze, x, y)) {
+                temp = traverse(maze, x - 1, y, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isRightNode(maze, x, y)) {
+                temp = traverse(maze, x, y + 1, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isLeftNode(maze, x, y)) {
+                temp = traverse(maze, x, y - 1, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            GFSqueue.add(closest);
+            x = GFSqueue.peek().getX();
+            y = GFSqueue.peek().getY();
+        }
+        maze.printMaze();
     }
 
     private void runAS(Maze maze) {

@@ -7,6 +7,7 @@ public class Node implements Comparable {
     private int endDistance = 0;
     private int parentDist = 0;  // dist to parent node
     private int num; //
+    private int distanceToEnd;
 
 
     public Node (int inX, int inY, int num) {
@@ -41,6 +42,7 @@ public class Node implements Comparable {
     public int getY(){
         return yCoord;
     }
+
     public int getMinDistance(){
         if(minPathLink== null){
             return minDistance;
