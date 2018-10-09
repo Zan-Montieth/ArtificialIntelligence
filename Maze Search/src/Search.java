@@ -11,6 +11,7 @@ public class Search {
 
     public Search(Maze currentMaze) {
 
+
         maze = currentMaze;
         runBFS(maze);
         maze.reset();
@@ -89,10 +90,8 @@ public class Search {
     }
 
     private void runAS(Maze maze) {
-        int[] weightplus = new int[4];
-        for(int v=0; v<= weightplus.length ;v++){
-            weightplus[v]=-1;
-        }
+
+
         AS.add(maze.start);
         while(!AS.isEmpty()){
             Node temp = AS.poll();
@@ -109,20 +108,32 @@ public class Search {
                 manh = manhattan(temp,maze.end);
                 if(temp!= null){
                     int t = temp.getMinDistance();
-                    AS.add(temp,(manh+t));
+                    //AS.add(temp,(manh+t));                                Panic!!!!!!
                 }
             }
             if (isRightNode(maze,x,y)){         //1
                 manh = manhattan(temp,maze.end);
                 Node check = traverse(maze,x+1,y,temp,1);
+                if(temp!= null){
+                    int t = temp.getMinDistance();
+                    //AS.add(temp,(manh+t));                                Panic!!!!!!
+                }
             }
             if (isDownNode(maze,x,y)) {         //2
                 manh = manhattan(temp,maze.end);
                 Node check = traverse(maze,x,y-1,temp,1);
+                if(temp!= null){
+                    int t = temp.getMinDistance();
+                    //AS.add(temp,(manh+t));                                Panic!!!!!!
+                }
             }
             if (isLeftNode(maze,x,y)) {         //3
                 manh = manhattan(temp,maze.end);
                 Node check = traverse(maze,x-1,y,temp,1);
+                if(temp!= null){
+                    int t = temp.getMinDistance();
+                    //AS.add(temp,(manh+t));                                Panic!!!!!!
+                }
             }
 
 
