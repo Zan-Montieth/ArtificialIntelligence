@@ -6,10 +6,10 @@ public class Search {
     Maze maze;
     PriorityQueue<Node> queue = new PriorityQueue<Node>();
     Stack<Node> stack = new Stack<Node>();
-    PriorityQueue<Node> AS = new PriorityQueue<Node>();
+    MinPQ<Node> AS = new MinPQ<Node>();
 
     public Search(Maze currentMaze) {
-        maze = currentMaze;
+        /*maze = currentMaze;
         runBFS(maze);
         maze.reset();
 
@@ -18,7 +18,7 @@ public class Search {
 
         runGBFS(maze);
         maze.reset();
-
+        */
         runAS(maze);
     }
 
@@ -82,8 +82,8 @@ public class Search {
         //}
     }
 
-    private void runGFS(Maze maze) {
-        int x = maze.getStart().getX();
+    private void runGBFS(Maze maze) {
+        /*int x = maze.getStart().getX();
         int y = maze.getStart().getY();
         Node temp;
         GFSqueue.add(maze.getStart());
@@ -122,7 +122,7 @@ public class Search {
             x = GFSqueue.peek().getX();
             y = GFSqueue.peek().getY();
         }
-        maze.printMaze();
+        */maze.printMaze();
     }
 
     private void runAS(Maze maze) {
