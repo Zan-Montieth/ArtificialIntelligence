@@ -7,6 +7,7 @@ public class Node implements Comparable {
     private int endDistance = 0;
     private int parentDist = 0;  // dist to parent node
     private int num; //
+    private int distanceToEnd;
 
 
     public Node (int inX, int inY, int num) {
@@ -17,11 +18,13 @@ public class Node implements Comparable {
 
     }
 
+    @Override
     public int compareTo(Object o) {
-        if (true) return 0;
-        else if (true) return 1;
+        if(o.getClass() == this.getClass()) {
+            if (((Node) o).getMinDistance() < this.getMinDistance()) return 1; // if that node is smaller
+            else return 0; // if this node is smaller
+        }
         else return -1;
-
     }
 
     public void setEndDistance(int endX, int endY){

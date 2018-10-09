@@ -1,4 +1,3 @@
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import Algs4.*;
 
@@ -10,8 +9,6 @@ public class Search {
     PriorityQueue<Node> AS = new PriorityQueue<Node>();
 
     public Search(Maze currentMaze) {
-
-
         maze = currentMaze;
         runBFS(maze);
         maze.reset();
@@ -43,31 +40,31 @@ public class Search {
         queue.add(maze.getStart());
         //System.out.println(queue.contains(maze.getStart()));
         while (!queue.isEmpty()) {
-            if(queue.peek() == maze.getEnd()) {
+            Node top = queue.poll();
+            if(top == maze.getEnd()) {
                 maze.printMaze();
                 break;
             }
             maze.currentState[x][y] = '.';
             if (isDownNode(maze,x,y)) {
-                Node temp = traverse(maze,x+1,y,queue.peek(),1);
-                if (temp != null) queue.add(temp);
+                Node temp = traverse(maze,x+1,y,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
             }
             if (isUpNode(maze,x,y)) {
-                Node temp = traverse(maze,x-1,y,queue.peek(),1);
-                if (temp != null) queue.add(temp);
+                Node temp = traverse(maze,x-1,y,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
             }
             if (isRightNode(maze,x,y)) {
-                Node temp = traverse(maze,x,y+1,queue.peek(),1);
-                if (temp != null) queue.add(temp);
+                Node temp = traverse(maze,x,y+1,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);
             }
             if (isLeftNode(maze,x,y)) {
-                Node temp = traverse(maze,x,y-1,queue.peek(),1);
-                if (temp != null) queue.add(temp);            }
-            //maze.printMaze();
-            queue.remove(queue.peek());
+                Node temp = traverse(maze,x,y-1,top,1);
+                if (temp != null && !queue.contains(temp)) queue.add(temp);            }
+            maze.printMaze();
             x = queue.peek().getX();
             y = queue.peek().getY();
-
+            System.out.printf("Next node is %d,%d\n",x,y);
         }
         //maze.printMaze();
 
@@ -85,8 +82,47 @@ public class Search {
         //}
     }
 
-    private void runGBFS(Maze maze) {
-
+    private void runGFS(Maze maze) {
+        int x = maze.getStart().getX();
+        int y = maze.getStart().getY();
+        Node temp;
+        GFSqueue.add(maze.getStart());
+        Node closest = maze.getStart();
+        while(!queue.isEmpty()) {
+            if(queue.peek() == maze.getEnd()) {
+                maze.printMaze();
+                break;
+            }
+            maze.currentState[x][y] = '.';
+            if (isDownNode(maze, x, y)) {
+                temp = traverse(maze, x + 1, y, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isUpNode(maze, x, y)) {
+                temp = traverse(maze, x - 1, y, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isRightNode(maze, x, y)) {
+                temp = traverse(maze, x, y + 1, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            if (isLeftNode(maze, x, y)) {
+                temp = traverse(maze, x, y - 1, GFSqueue.peek(), 1);
+                if (temp.getMinDistance() < closest.getMinDistance()) {
+                    closest = temp;
+                }
+            }
+            GFSqueue.add(closest);
+            x = GFSqueue.peek().getX();
+            y = GFSqueue.peek().getY();
+        }
+        maze.printMaze();
     }
 
     private void runAS(Maze maze) {
