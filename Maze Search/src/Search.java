@@ -7,9 +7,11 @@ public class Search {
     PriorityQueue<Node> queue = new PriorityQueue<Node>();
     PriorityQueue<Node> GFSqueue = new PriorityQueue<Node>();
 
+    Stack<Node> stack = new Stack<Node>();
+    MinPQ<Node> AS = new MinPQ<Node>();
 
     public Search(Maze currentMaze) {
-        maze = currentMaze;
+        /*maze = currentMaze;
         runBFS(maze);
         maze.reset();
 
@@ -18,9 +20,19 @@ public class Search {
 
         runGBFS(maze);
         maze.reset();
-
+        */
         runAS(maze);
     }
+
+     public int compare(Node s1, Node s2) {
+        if (s1.getMinDistance() < s2.getMinDistance())
+            return 1;
+        else if (s1.getMinDistance() > s2.getMinDistance())
+            return -1;
+        return 0;
+    }
+
+
 
     private void runBFS(Maze maze) {
         int x = maze.getStart().getX();
@@ -61,11 +73,12 @@ public class Search {
     }
 
     private void runDFS(Maze maze) {
+        stack.push(maze.start);    // put start on the stack
 
     }
 
     private void runGBFS(Maze maze) {
-        int x = maze.getStart().getX();
+        /*int x = maze.getStart().getX();
         int y = maze.getStart().getY();
         Node temp;
         GFSqueue.add(maze.getStart());
@@ -109,21 +122,24 @@ public class Search {
 
     private void runAS(Maze maze) {
 
+        }
+
     }
 
-    private Node traverse(Maze inMaze, int x, int y, Node base, double weight) {
+    private Node traverse(Maze inMaze, int x, int y, Node base, int weight) { // weight should be 1 bc starting at node +1
         Node found;
         weight++;
         if (inMaze.hashpull(x, y) !=null) {
             found = inMaze.hashpull(x, y);  // if node found
             //Node temp = inMaze.hashpull(x,y);
             //int baseNum = (base.getX()*100)+base.getY();
-            int endNode = inMaze.hashpull(x,y).getNum();
-            int startNode = inMaze.hashpull(base.getX(), base.getY()).getNum();
+            //int endNode = inMaze.hashpull(x,y).getNum();
+            //int startNode = inMaze.hashpull(base.getX(), base.getY()).getNum();
             //System.out.println(endNode);
             //System.out.println(startNode);
-            Edge edge = new Edge(endNode, startNode, weight);
-            inMaze.graph.addEdge(edge);
+            //Edge edge = new Edge(endNode, startNode, weight);
+            //inMaze.graph.addEdge(edge);
+            found.chekcMinDistance(weight,base);
         }
         else {          //if node not found keep walking
             /* Need to add in check that it isnt finding the base node
@@ -163,5 +179,8 @@ public class Search {
 
     private Boolean isRightNode(Maze inMaze, int x,int y) {
         return (inMaze.currentState[x][y+1]==' ' || inMaze.currentState[x][y+1]=='O' || inMaze.currentState[x][y+1]=='*');
+    }
+    private int manhattan(Node temp, Node end){
+        return(Math.abs(temp.getX()-end.getX())+Math.abs(temp.getY()-temp.getY()));
     }
 }
