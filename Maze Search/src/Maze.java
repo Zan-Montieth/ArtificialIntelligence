@@ -21,10 +21,11 @@ public class Maze {
         assign(currentState,textMaze);
         start = findStart();
         end = findEnd();
-        int start;
-        int end;
+        //int start;
+        //int end;
         list = new Node[10000];
         createGraph();
+        start.checkMinDistance(0,null);
     }
 
     public void printMaze(){
