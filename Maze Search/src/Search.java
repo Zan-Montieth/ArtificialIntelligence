@@ -5,7 +5,7 @@ public class Search {
 
     Maze maze;
     PriorityQueue<Node> queue = new PriorityQueue<Node>();
-
+    PriorityQueue<Node> GFSqueue = new PriorityQueue<Node>();
 
 
     public Search(Maze currentMaze) {
@@ -64,7 +64,7 @@ public class Search {
 
     }
 
-    private void runGFS(Maze maze) {
+    private void runGBFS(Maze maze) {
         int x = maze.getStart().getX();
         int y = maze.getStart().getY();
         Node temp;
