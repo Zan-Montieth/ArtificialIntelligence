@@ -84,7 +84,9 @@ public class Search {
             //System.out.printf("Next node is %d,%d\n",x,y);
         }
         //maze.printMaze();
-        System.out.printf("Number of frontier nodes = %d\nNumber of completed nodes = %d",frontierNodes-completedNodes, completedNodes);
+        //int steps = findSteps(maze);
+        System.out.printf("Number of frontier nodes = %d\nNumber of completed nodes = %d"
+                ,frontierNodes-completedNodes, completedNodes);
     }
 
     private void runDFS(Maze maze) {
@@ -232,6 +234,16 @@ public class Search {
         return(found);
     }
 
+    /*public int findSteps(Maze inMaze,Node endNode) {
+        Iterator<Edge> iter = maze.graph.edges().iterator();
+        while (iter.hasNext()) {
+            if(iter.next()) {
+
+            }
+        }
+
+    }*/
+
     private Boolean isUpNode(Maze inMaze, int x,int y) {
         return (inMaze.currentState[x-1][y]==' ' || inMaze.currentState[x-1][y]=='O'|| inMaze.currentState[x-1][y]=='*');
     }
@@ -248,6 +260,6 @@ public class Search {
         return (inMaze.currentState[x][y+1]==' ' || inMaze.currentState[x][y+1]=='O' || inMaze.currentState[x][y+1]=='*');
     }
     private int manhattan(Node temp, Node end){
-        return(Math.abs(temp.getX()-end.getX())+Math.abs(temp.getY()-temp.getY()));
+        return(Math.abs(temp.getX()-end.getX())+Math.abs(temp.getY()-end.getY()));
     }
 }
