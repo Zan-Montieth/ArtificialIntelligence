@@ -62,6 +62,9 @@ public class Node implements Comparable {
     public void addManh(Maze maze){
         minDistance+= Math.abs(xCoord-maze.getEnd().getX())+Math.abs(yCoord-maze.getEnd().getY());
     }
+    public void removeManh(Maze maze){
+        minDistance-= Math.abs(xCoord-maze.getEnd().getX())+Math.abs(yCoord-maze.getEnd().getY());
+    }
     public Node getMinPathLink(){
         return minPathLink;
     }

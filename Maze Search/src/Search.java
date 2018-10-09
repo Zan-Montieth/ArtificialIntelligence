@@ -143,17 +143,19 @@ public class Search {
                     System.out.println(t);
                     check.addManh(maze);
                     AS.insert(check);
+                    check.removeManh(maze);
                 }
             }
             if (isRightNode(maze,x,y)){         //1
                 //manh = manhattan(temp,maze.end);
                 Node check = traverse(maze,x,y+1,temp,0);
                 if(check!= null){
-                    System.out.println("Right potato");
+                    //System.out.println("Right potato");
                     int t = check.getMinDistance();
                     System.out.println(t);
                     check.addManh(maze);
                     AS.insert(check);
+                    check.removeManh(maze);
                 }
             }
             if (isDownNode(maze,x,y)) {         //2
@@ -164,6 +166,7 @@ public class Search {
                     System.out.println(t);
                     check.addManh(maze);
                     AS.insert(check);
+                    check.removeManh(maze);
                 }
             }
             if (isLeftNode(maze,x,y)) {         //3
@@ -174,6 +177,7 @@ public class Search {
                     System.out.println(t);
                     check.addManh(maze);
                     AS.insert(temp);
+                    check.removeManh(maze);
                 }
             }
             maze.printMaze();
